@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  report-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8181:8181"
+    environment:
+      - JAVA_OPTS=-Xmx512m -Xms256m
+    volumes:
+      - .:/usr/src/app/ # This volume is for local development. Remove it in production.
+    command: ["java", "-jar", "/app/report-container-1.0-SNAPSHOT.jar"]
